@@ -1,3 +1,4 @@
+// @ts-nocheck
 const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");
@@ -22,5 +23,6 @@ db.sequelize = sequelize;
 db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.production = require("./production.model.js")(sequelize);
 db.sale = require("./sale.model.js")(sequelize);
+db.products = require("./products.model.js")(sequelize);
 
 module.exports = db;

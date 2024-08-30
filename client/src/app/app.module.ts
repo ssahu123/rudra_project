@@ -15,6 +15,7 @@ import { TutorialsListComponent } from './components/tutorials-list/tutorials-li
 import { AddItemInProductionComponent } from './components/production/add-items-in-production.component';
 import { ProductItemListComponent } from './components/production/product-item-list.component';
 import { ProductItemDetailsComponent } from './components/production/product-item-details.component';
+import { StockDBComponent } from './components/stock-dashboard/stock-db.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProductItemDetailsComponent } from './components/production/product-ite
     AddItemInProductionComponent,
     ProductItemListComponent,
     ProductItemDetailsComponent,
+    StockDBComponent,
     AddTutorialComponent,
     TutorialDetailsComponent,
     TutorialsListComponent

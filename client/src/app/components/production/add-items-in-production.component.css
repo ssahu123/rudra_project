@@ -17,3 +17,12 @@
   padding-bottom: 16px;
 }
 
+.item-list {
+  padding-top: 0;
+}
+.p-dropdown .p-inputwrapper:focus,
+.p-dropdown .p-inputwrapper:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #e9ecef;
+}

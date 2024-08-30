@@ -7,4 +7,5 @@ export class ProductItem {
   saleRate?: number;
   description?: string;
   remarks?: string;
+  updatedAt?: string;
 }

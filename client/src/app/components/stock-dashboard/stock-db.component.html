@@ -1,4 +1,4 @@
-<div class="list row">
+<div class="list">
   <div class="col-md-8">
     <div class="input-group mb-3">
       <input
@@ -17,9 +17,9 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
+  <div style="width: fit-content;">
     <div class="row">
-    <h4>Produced Items List</h4>
+    <h4>Stock Items List</h4>
     <i class="pi pi-refresh" style="padding-left: 16px;
     padding-top: 8px;" (click)="refreshList()"></i>
     </div>
@@ -34,13 +34,15 @@
           <div style="width: 32px;text-align: right; padding-right: 8px;">
             {{ (i+1) + this.pageStart }}
           </div>
-          <div style="padding-right: 8px;">
-            {{ getDateString(productItem) }}
-          </div>
           <div style="width: 60px;text-align: center; padding-right: 8px;">
             {{ productItem.code }}
           </div>
+          <div style="width: 300px; padding-right: 8px;">
           {{ productItem.itemName }}
+          </div>
+          <div style="width: 60px;text-align: right; padding-right: 8px;">
+          {{ productItem.totalQuantity }}
+          </div>
         </div>
       </li>
       }
@@ -58,11 +60,5 @@
     <!-- <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
       Remove All
     </button> -->
-  </div>
-  <div class="col-md-6" *ngIf="showProducedItem">
-    <app-product-item-details
-      [viewMode]="viewMode"
-      [currentProductItem]="currentProductItem"
-    ></app-product-item-details>
   </div>
 </div>

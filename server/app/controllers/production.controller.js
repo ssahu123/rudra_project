@@ -1,3 +1,4 @@
+const { sequelize } = require( "../models" );
 const db = require("../models");
 const Production = db.production;
 const Op = db.Sequelize.Op;
@@ -40,9 +41,14 @@ exports.findAll = (req, res) => {
   const itemName = req.query.itemName;
   var condition = itemName ? { itemName: { [Op.like]: `%${itemName}%` } } : null;
 
-  Production.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
+  Production.findAll( {
+    where: condition,
+    order: [
+      [ 'updatedAt', 'DESC' ]
+    ],
+    })
+    .then( data => {
+      res.send( data );
     })
     .catch(err => {
       res.status(500).send({
@@ -143,6 +149,25 @@ exports.deleteAll = (req, res) => {
 // find all published Items
 exports.findAllPublished = (req, res) => {
   Production.findAll({ where: { published: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving items."
+      });
+    });
+};
+
+exports.findAllProductions = (req, res) => {
+  Production.findAll({ 
+    attributes: [
+      "code",
+      "itemName",
+      [sequelize.fn("sum", sequelize.col("quantity")), "totalQuantity"]
+    ],
+    group: ["code", "itemName"] })
     .then(data => {
       res.send(data);
     })

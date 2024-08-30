@@ -49,4 +49,8 @@ export class ProductItemService {
   findByTitle(title: any): Observable<ProductItem[]> {
     return this.http.get<ProductItem[]>(`${baseUrl}?itemName=${title}`);
   }
+
+  getTotalProductions(): Observable<ProductItem[]> {
+    return this.http.get<ProductItem[]>(`${baseUrl}/totalQuantity`);
+  }
 }

@@ -1,0 +1,87 @@
+<div class="list row">
+  <div class="column">
+    <h4>Add New Production</h4>
+    <div class="submit-form">
+      <table class="table-form form-group" width="500px">
+        <tr style="margin: 16px;">
+          <td class="td-label">
+            <label>Item</label>
+          </td>
+          <td width="400px">
+            <!-- <select type="number" class="form-control" id="code" required [(ngModel)]="productItem.code" name="code"
+                  placeholder="Code" /> -->
+            <p-dropdown [options]="items" [(ngModel)]="currentItem" class="item-list"
+              (click)="productItem.code=currentItem.code;productItem.itemName=currentItem.itemName"
+              optionLabel="itemName" placeholder="Select Item">
+              <ng-template pTemplate="selectedItem">
+                <div class="dropdown-item align-items-center gap-2" *ngIf="currentItem">
+                  <div>{{ currentItem.code }} - {{ currentItem.itemName }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                <div class="dropdown-item flex align-items-center gap-2">
+                  <div>{{ item.code }} - {{ item.itemName }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </td>
+        </tr>
+        @if (currentItem.description) {
+        <tr>
+          <td class="td-label">
+            Description
+          </td>
+          <td class="td-label">
+            {{ currentItem.description }}
+          </td>
+        </tr>
+        }
+        <tr>
+          <td class="td-label">
+            <label for="quantity">Quantity</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="quantity" required [(ngModel)]="productItem.quantity"
+              name="quantity" placeholder="Quantity" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="cost">Cost</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="cost" required [(ngModel)]="productItem.cost" name="cost"
+              placeholder="Cost" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="saleRate">Sale Rate</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="saleRate" required [(ngModel)]="productItem.saleRate"
+              name="saleRate" placeholder="Sale Rate" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="remarks">Remarks</label>
+          </td>
+          <td>
+            <textarea type="text" class="form-control" id="remarks" [(ngModel)]="productItem.remarks" name="remarks"
+              placeholder="Remarks"></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <button (click)="saveProductItem()" pButton pRipple class="p-button-success">Submit</button>
+      <button (click)="newProductItem()" pButton pRipple class="p-button-secondary">Clear</button>
+    </div>
+  </div>
+  @if (submitted) {
+  <div class="column">
+    <h4>Item added successfully!</h4>
+    <app-product-item-details [viewMode]="true" [currentProductItem]="currentProductItem"></app-product-item-details>
+  </div>
+  }
+</div>

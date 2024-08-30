@@ -1,0 +1,136 @@
+@if (viewMode){
+  @if (currentProductItem.id){
+  <div class="edit-form">
+    <h4>Produced Item</h4>
+    <div>
+      <label><strong>Code:</strong></label> {{ currentProductItem.code }}
+    </div>
+    <div>
+      <label><strong>Item Name:</strong></label>
+      {{ currentProductItem.itemName }}
+    </div>
+    @if (currentProductItem.description){
+    <div>
+      <label><strong>Description:</strong></label>
+      {{ currentProductItem.description }}
+    </div>
+    }
+    <div>
+      <label><strong>Quantity:</strong></label>
+      {{ currentProductItem.quantity }}
+    </div>
+    <div>
+      <label><strong>Cost:</strong></label>
+      {{ currentProductItem.cost }}
+    </div>
+    <div>
+      <label><strong>Sale Rate:</strong></label>
+      {{ currentProductItem.saleRate }}
+    </div>
+    @if (currentProductItem.remarks){
+    <div>
+      <label><strong>Remarks:</strong></label>
+      {{ currentProductItem.remarks }}
+    </div>
+    }
+
+    <button pButton pRipple class="p-button-warning" (click)="viewMode=!viewMode">
+      Edit
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  } @else {<p>Please select one...</p>}
+} @else {
+  @if (currentProductItem.id) {
+  <div class="edit-form">
+    <h4>Produced Item</h4>
+    <form>
+      <table>
+        <tr>
+          <td class="td-label">
+            <label for="quantity">Quantity</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="quantity" required [(ngModel)]="currentProductItem.quantity"
+              name="quantity" placeholder="Quantity" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="cost">Cost</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="cost" required [(ngModel)]="currentProductItem.cost" name="cost"
+              placeholder="Cost" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="saleRate">Sale Rate</label>
+          </td>
+          <td>
+            <input type="number" class="form-control" id="saleRate" required [(ngModel)]="currentProductItem.saleRate"
+              name="saleRate" placeholder="Sale Rate" />
+          </td>
+        </tr>
+        <tr>
+          <td class="td-label">
+            <label for="remarks">Remarks</label>
+          </td>
+          <td>
+            <textarea type="text" class="form-control" id="remarks" [(ngModel)]="currentProductItem.remarks" name="remarks"
+              placeholder="Remarks"></textarea>
+          </td>
+        </tr>
+      </table>
+<!--       <div class="form-group">
+        <label for="itemName">Item Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="itemName"
+          [(ngModel)]="currentProductItem.itemName"
+          name="itemName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentProductItem.description"
+          name="description"
+        />
+      </div> -->
+
+      <!-- <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ currentProductItem.published ? "Published" : "Pending" }}
+      </div> -->
+    </form>
+
+<!--     @if (currentProductItem.published) {
+    <button class="badge badge-primary mr-2"
+      (click)="updatePublished(false)" >
+      UnPublish
+    </button>
+    } @else {
+    <button class="badge badge-primary mr-2" (click)="updatePublished(true)">
+      Publish
+    </button>
+    } -->
+    
+    <button type="submit" pButton pRipple class="p-button-success" (click)="updateProductItem()">
+      Update
+    </button>
+    <button pButton pRipple class="p-button-danger" (click)="deleteProductItem()">
+      Delete
+    </button>
+    <button pButton pRipple class="p-button-secondary" (click)="viewMode=true">
+      Cancel
+    </button>
+    <p>{{ message }}</p>
+  </div>
+  } @else {<p>Cannot access this Produced Items...</p>}
+}

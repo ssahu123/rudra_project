@@ -1,0 +1,56 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by Name"
+        [(ngModel)]="itemName"/>
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Produced Items List</h4>
+    <ul class="list-group">
+      @for (productItem of currPageItems; track productItem.id; let i = $index) {
+      <li
+        class="list-group-item"
+        [class.active]="i == currentIndex"
+        (click)="setActiveProductItem(productItem, i)"
+      >
+        <div>
+          {{ (i+1) + this.pageStart + ":" }}
+          {{ productItem.code }} - {{ productItem.itemName }}
+        </div>
+      </li>
+      }
+    </ul>
+    <p-paginator 
+      (onPageChange)="onPageChange($event)" 
+      [first]="pageStart"
+      [rows]="pageRow" 
+      [totalRecords]="productItems.length" 
+      [showCurrentPageReport]="true"
+      [showPageLinks]="false"
+      [showJumpToPageDropdown]="false"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" 
+      [rowsPerPageOptions]="[10, 20, 50, 100]" />
+    <!-- <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
+      Remove All
+    </button> -->
+  </div>
+  <div class="col-md-6" *ngIf="showProducedItem">
+    <app-product-item-details
+      [viewMode]="viewMode"
+      [currentProductItem]="currentProductItem"
+    ></app-product-item-details>
+  </div>
+</div>
